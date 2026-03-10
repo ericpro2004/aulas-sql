@@ -1,0 +1,95 @@
+-- aula ddl e dml
+
+CREATE DATABASE br_livro_0201;
+
+USE br_livro_0201;
+
+CREATE TABLE tb_genero
+(cd_genero INT NOT NULL PRIMARY KEY,
+ genero CHAR(30));
+ 
+ CREATE TABLE tb_editora
+ (cd_editora INT NOT NULL PRIMARY KEY,
+ editora CHAR(30));
+ 
+ CREATE TABLE tb_livro
+ (isbn INT NOT NULL PRIMARY KEY,
+ titulo CHAR(50),
+ cd_editora INT,
+ cd_genero INT,
+ preco DECIMAL(8,2),
+ dt_livro DATE);
+ 
+ ALTER TABLE tb_livro
+ ADD CONSTRAINT fk_genero FOREIGN KEY (cd_genero)
+ REFERENCES tb_genero (cd_genero); 
+ 
+ALTER TABLE tb_livro
+ADD CONSTRAINT fk_editora FOREIGN KEY (cd_editora)
+REFERENCES tb_editora (cd_editora); 
+
+INSERT INTO tb_genero 
+(cd_genero, genero) 
+VALUES
+(1, 'Computacao'),
+(2, 'Medicina'),
+(3, 'Engenharia'),
+(4, 'Juridico'),
+(5 , 'Arquitetura'), 
+(6, 'Biologia'), 
+(7, 'Mecatronica');
+
+SELECT * FROM tb_genero;
+
+INSERT INTO tb_editora 
+(cd_editora, editora) 
+VALUES
+(1, 'novatec'),
+(2, 'amazon'), 
+(3, 'coopmed'), 
+(4, 'livraria florence'), 
+(5 , 'blucher'), 
+(6,'Mundial'), 
+(7,'saraiva'), 
+(8,'Editora Forum'),
+(9, 'Dickens');
+
+SELECT * FROM tb_editora;
+
+INSERT INTO tb_livro 
+(isbn, titulo, cd_editora, cd_genero, preco, dt_livro) 
+VALUES
+(1,'banco de dados',1,1, 300, '2019-10-02'), 
+(2,'Engenharia de Software',1,1, 350, '2019-10-03'), 
+(3,'Ortopedia',3,2, 310, '2019-10-04'), 
+(4,'Cardiologia',4,2, 320, '2019-10-05'), 
+(5,'Estrutura Predial',5,3, 200, '2019-10-06'), 
+(6,'Estrutura Hidraulica',6,3, 300, '2019-10-07'), 
+(7,'Direito Penal',7,4, 150, '2019-10-08'), 
+(8,'Direito Civil',8,4, 200, '2019-10-09'), 
+(9,'Cores ',7,5, 200, '2019-10-10'), 
+(10, 'Paisagismo ',8,5, 250, '2019-10-11'), 
+(11,'Virus',9,6, 300, '2019-10-12'), 
+(12,'Bacteria',9,6, 300, '2019-10-20');
+
+SELECT * FROM tb_livro;
+-- ex1
+SELECT (cd_genero) FROM tb_genero WHERE cd_genero = 2;
+-- ex2
+DELETE FROM tb_genero WHERE cd_genero = 1;
+-- ex3
+INSERT INTO tb_genero 
+(cd_genero, genero)
+VALUES 
+(8, 'Publicidade');
+-- ex4
+UPDATE tb_livro
+SET preco = 500 
+WHERE isbn = 1;
+-- ex5
+UPDATE tb_livro
+SET preco = preco*1.2
+WHERE isbn < 20;
+-- ex6
+SELECT * FROM tb_livro 
+WHERE preco > 300;
