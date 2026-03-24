@@ -1,1 +1,34 @@
-1
+USE bd_rh;
+
+-- 1)
+UPDATE tb_funcionario
+SET salario = 10000
+WHERE matricula = 1;
+
+select * FROM tb_funcionario;
+
+-- 2)
+UPDATE tb_funcionario 
+set salario = salario*1.1
+WHERE matricula < 20;
+
+select * FROM tb_funcionario;
+
+-- 3)
+select * FROM tb_funcionario
+where salario > 5000;
+
+-- 4)
+select * from tb_funcionario
+where funcionario like '3%';
+
+
+-- 5)
+
+select * FROM tb_funcionario
+WHERE funcionario like '%a';
+
+-- 6)
+
+select * FROM tb_funcionario
+WHERE salario between 5000 and 10000;
