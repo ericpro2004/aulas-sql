@@ -101,18 +101,31 @@ Select * FROM tb_cliente;
 
 UPDATE tb_vendedor
 SET vendedor = 'Anibal Santoro'
-WHERE cd_vendedor = 2;
+WHERE cd_vendedor = 1;
 
 Select * FROM tb_vendedor;
 
 -- 3 Alterar o valor do Pedido 1 parar cd_veiculo 4 e valor R$101.000,00
 
 UPDATE tb_pedido
-SET dt_pedido 
+SET cd_veiculo = 4, valor_pedido = 101000
+WHERE NR_PEDIDO = 1;
+
+Select * FROM tb_pedido;
 
 -- 4 Excluir Cliente quando o cd_cliente = 1  (vê se é possível ? Explique ? )
 
+DELETE FROM tb_cliente
+WHERE cd_cliente = 1;
+
+select * from tb_cliente;
+
+
 -- 5 Atualizar o valor da comissão em 10% do valor da venda
+
+UPDATE tb_pedido
+SET comissao = valor_pedido * 0.1
+WHERE nr_pedido < 20;
 
 
 DROP TABLE tb_vendedor;
