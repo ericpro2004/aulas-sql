@@ -1,0 +1,40 @@
+CREATE DATABASE bd_revisao_0201;
+
+USE bd_revisao_0201;
+
+CREATE TABLE tb_cliente
+(cd_cliente INT NOT NULL PRIMARY KEY,
+cliente VARCHAR(50));
+
+CREATE TABLE tb_vendedor
+(cd_vendedor INT NOT NULL PRIMARY KEY,
+vendedor VARCHAR(50));
+
+CREATE TABLE tb_veiculo
+(cd_veiculo INT NOT NULL PRIMARY KEY,
+veiculo VARCHAR(50),
+valorveiculo DECIMAL(12,2));
+
+CREATE TABLE tb_pedido
+(dt_pedido DATE NOT NULL,
+cd_veiculo INT NOT NULL,
+cd_cliente INT NOT NULL,
+cd_vendedor INT NOT NULL,
+nr_pedido INT,
+valorpedido DECIMAL(12,2),
+comissao DECIMAL(12,2),
+
+PRIMARY KEY (dt_pedido, cd_veiculo, cd_cliente, cd_vendedor));
+
+ALTER TABLE tb_pedido
+ADD CONSTRAINT fk_cliente FOREIGN KEY (cd_cliente)
+REFERENCES tb_cliente (cd_cliente);
+
+ALTER TABLE tb_pedido
+ADD CONSTRAINT fk_vendedor FOREIGN KEY (cd_vendedor)
+REFERENCES tb_vendedor (cd_vendedor);
+
+ALTER TABLE tb_pedido
+ADD CONSTRAINT fk_veiculo FOREIGN KEY (cd_veiculo)
+REFERENCES tb_veiculo (cd_veiculo);
+
