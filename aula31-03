@@ -108,3 +108,58 @@ ALTER TABLE tb_teste
 DROP COLUMN nota;
 
 DROP TABLE tb_teste;
+
+-- Exercício 1
+
+INSERT INTO tb_cliente
+(cd_cliente, cliente)
+VALUES
+(6, 'Pedro Nóbrega');
+
+-- Exercício 2
+
+UPDATE tb_cliente
+SET cliente = 'Carlos Nascimento'
+WHERE cd_cliente = 1;
+
+-- Exercício 3
+
+UPDATE tb_vendedor
+SET vendedor = 'Anibal Santoro'
+WHERE cd_vendedor = 1;
+
+-- Exercício 4
+UPDATE tb_pedido
+SET cd_veiculo = 4, valorpedido = 101.000
+WHERE nr_pedido = 1;
+
+-- Exercício 5
+
+DELETE FROM tb_cliente
+WHERE cd_cliente = 1;
+
+-- Exercício 6
+
+UPDATE tb_pedido
+SET comissao = valorpedido * 0.1
+WHERE nr_pedido < 20;
+
+
+-- Exercício 7
+
+SElECT cd_veiculo FROM tb_pedido;
+
+-- Exercício 8
+
+ALTER TABLE tb_pedido
+ADD nota INT;
+
+-- Exercício 9
+
+ALTER TABLE tb_pedido
+MODIFY COLUMN nota CHAR(50);
+
+-- Exercício 10
+
+ALTER TABLE tb_pedido
+DROP COLUMN nota;
