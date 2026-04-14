@@ -1,0 +1,122 @@
+USE br_livro_0201;
+
+-- Exercício INNER JOIN.
+
+-- 1 Lista titulo, editora quando o preco maior que R$200,00
+SELECT L.titulo, E.editora FROM tb_livro L
+INNER JOIN  tb_editora E
+ON L.cd_editora = E.cd_editora
+WHERE  L.preco > 200;
+
+-- 2 Lista titulo, gênero quando o preco entre R$200,00 e R$300,00
+SELECT titulo, cd_genero, preco FROM tb_livro WHERE preco between 200 and 300;
+
+SELECT L.titulo, G.genero FROM tb_livro L
+INNER JOIN tb_genero G
+ON L.cd_genero = G.cd_genero
+WHERE L.preco between 200 and 300;
+
+
+-- 3 Lista  titulo, editora e gênero quando cd_editora 1, 2 e 3
+SELECT L.titulo, E.editora, G.genero FROM tb_editora E
+INNER JOIN tb_livro L
+ON L.cd_editora = E.cd_editora
+INNER JOIN tb_genero G
+ON L.cd_genero = G.cd_genero
+WHERE L.cd_editora IN (1,2,3);
+
+-- 4 lista titulo, editora, preco e preco com mais 20%
+SELECT L.titulo, E.editora, L.preco, L.preco*1.2 AS Vinteporcento FROM tb_livro L
+INNER JOIN tb_editora E
+ON L.cd_editora = E.cd_editora;
+
+-- Exercício VIEW.
+
+-- 1	Criar uma View – liste isbn, titulo
+CREATE VIEW vw_05 as
+
+SELECT isbn, titulo FROM tb_livro;
+
+SELECT * FROM vw_05;
+
+-- 2	Criar uma View – list isbn, titulo, preco, preco com 10%
+CREATE VIEW vw_06 as
+
+SELECT isbn, titulo, preco, preco*1.1 as dezporcento FROM tb_livro; 
+
+SELECT * FROM vw_06;
+
+
+-- 3	Criar uma View – list isbn, titulo e editora
+CREATE VIEW vw_07 as 
+
+SELECT L.isbn, L.titulo, E.editora FROM tb_livro L
+INNER JOIN tb_editora E
+ON L.cd_editora = E.cd_editora;
+
+SELECT * FROM vw_07;
+-- 4	Criar uma View – list isbn, titulo e gênero por ordem de gênero.
+CREATE VIEW vw_08 as
+
+SELECT L.isbn, L.titulo, G.genero FROM tb_livro L
+INNER JOIN tb_genero G
+ON L.cd_genero = G.cd_genero
+ORDER BY G.genero;
+
+SELECT * FROM vw_08;
+
+
+USE bd_rh;
+
+-- 5 Lista matricula, funcionário e setor
+ 
+ SELECT F.matricula, F.funcionario, S.setor FROM tb_funcionario F 
+ INNER JOIN tb_setor S
+ ON F.cd_setor = S.cd_setor;
+ 
+-- 6 Lista matricula, funcionário, salario e cargo com salario acima de R$ 5.000,00
+
+SELECT F.matricula, F.funcionario, F.salario, C.cargo, F.salario > 5000 as acimade5000 FROM tb_funcionario F
+INNER JOIN tb_cargo C
+ON F.cd_cargo = C.cd_cargo;
+ 
+ 
+-- 7 Lista  matricula, funcionário, salario, setor e cargo
+ 
+SELECT F.matricula, F.funcionario, F.salario, S.setor, C.cargo FROM tb_funcionario F
+INNER JOIN tb_setor S
+ON F.cd_setor = S.cd_setor
+INNER JOIN tb_cargo C 
+ON F.cd_cargo = C.cd_cargo;
+
+-- 8 Criar uma view e Listar matricula, funcionário e setor
+ CREATE VIEW vw_09 as
+ 
+ SELECT F.matricula, F.funcionario, S.setor FROM tb_funcionario F 
+ INNER JOIN tb_setor S
+ ON F.cd_setor = S.cd_setor;
+ 
+ SELECT * FROM vw_09;
+ 
+-- 9 Criar uma view e Listar  matricula, funcionário, salario e cargo com salario acima de R$ 5.000,00
+CREATE VIEW vw_10 as
+
+SELECT F.matricula, F.funcionario, F.salario, C.cargo, F.salario > 5000 as acimade5000 FROM tb_funcionario F
+INNER JOIN tb_cargo C
+ON F.cd_cargo = C.cd_cargo;
+
+ SELECT * FROM vw_10;
+
+-- 10 Criar uma view e Listar   matricula, funcionário, salario, setor e cargo
+CREATE VIEW vw_11 as
+ 
+SELECT F.matricula, F.funcionario, F.salario, S.setor, C.cargo FROM tb_funcionario F
+INNER JOIN tb_setor S
+ON F.cd_setor = S.cd_setor
+INNER JOIN tb_cargo C 
+ON F.cd_cargo = C.cd_cargo;
+
+ SELECT * FROM vw_11;
+
+
+
